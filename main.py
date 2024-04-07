@@ -110,7 +110,7 @@ while True:
     chat = input(">>> ")
     if chat == "goodbye" or chat == "/bye":
         messages = []
-        print("Goodbye! until Next time!")
+        print("Goodbye! Until next time!")
         pygame.quit()
         break
     elif len(chat) > 0: respond(chat)
