@@ -1,22 +1,16 @@
+# https://github.com/ollama/ollama/blob/main/docs/import.md
+
 import ollama
 import speech_recognition as sr
 import pyttsx3
-import datetime
-import threading
-# import os 
-# from gtts import gTTS 
 
-
+model = "ren"
 messages = []
-# Initialize the recognizer
 r = sr.Recognizer()
-ollama.pull("tinydolphin")
 text=""
-# text to speech
 engine = pyttsx3.init()
-# language = 'en'
 
-engine.setProperty('rate', 200)
+engine.setProperty('rate', 225)
 def record_text():
     # Loop in case of errors
     while True:
@@ -24,12 +18,12 @@ def record_text():
             # use the microphone as source for input
             with sr.Microphone() as source2:
                 # listens for the user's input
-                print("Listening...")
+                print("[REN IS LISTENING...]")
                 audio2 = r.listen(source2)
 
                 # Using google to recognize audio
                 MyText = r.recognize_google(audio2)
-                print("I think I heard you say, '" + MyText + "'")
+                print("USER >>> " + MyText)
                 return MyText
 
         except sr.UnknownValueError as e:
@@ -46,7 +40,7 @@ def send(chat):
       'content': chat,
     })
     
-    stream = ollama.chat(model='tinydolphin', 
+    stream = ollama.chat(model=model, 
                          messages=messages,
                          stream=True,
     )
@@ -59,8 +53,8 @@ def send(chat):
         part = chunk['message']['content']
         print(part, end='', flush=True)
          
-        response = response + part
-        full_response = full_response + part
+        response += part
+        full_response += part
 
         if (part == ".") or (part == "!") or (part == "?") or (part == ",") or (part == ";") or (part == ":") or (part == "\n"):
             engine.say(response)
@@ -69,7 +63,7 @@ def send(chat):
     
     messages.append({
       'role': 'assistant',
-      'content': response,
+      'content': full_response,
     })
 
     print("")
@@ -77,7 +71,6 @@ def send(chat):
 while True:
     chat = record_text()
 
-    if chat == "/exit":
-        break
-    elif len(chat) > 0:
-        send(chat)
+    if chat == "/bye": break
+    elif chat == "goodbye": messages = []
+    elif len(chat) > 0: send(chat)
