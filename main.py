@@ -4,6 +4,20 @@ import pyttsx3 as engine
 
 from localstorage import get_history, add_history
 
+import pygame
+import random
+
+# Initialize pygame
+pygame.init()
+
+# Set up the display
+WIDTH, HEIGHT = 800, 600
+window = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Changing Color Circle")
+
+# Define colors
+BLACK = (0, 0, 0)
+
 model = "ren"
 text = ""
 
@@ -72,7 +86,31 @@ def respond(chat):
     print("")
 
 while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Generate random color
+    color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
+    # Clear the screen
+    window.fill(BLACK)
+
+    # Draw a circle
+    circle_radius = 50
+    circle_pos = (WIDTH // 2, HEIGHT // 2)
+    pygame.draw.circle(window, color, circle_pos, circle_radius)
+
+    # Update the display
+    pygame.display.flip()
+
+    # Add a small delay to control the rate of color change
+    pygame.time.delay(100)
+
     chat = input(">>> ")
-    if chat == "/bye": break
-    elif chat == "goodbye": messages = []
+    if chat == "goodbye" or chat == "/bye":
+        messages = []
+        print("Goodbye! until Next time!")
+        pygame.quit()
+        break
     elif len(chat) > 0: respond(chat)

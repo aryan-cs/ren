@@ -21,4 +21,8 @@ def get_history():
 def add_history(history):
     with open('history.txt', 'a') as f:
         for line in history:
-            f.write(str(line) + '\n')
+            line.replace('\n', '')
+            line.replace('<|im_end|>', '')
+            line.replace('<|im_start|>', '')
+            if (str(line) != ''):
+                f.write(str(line) + '\n')
