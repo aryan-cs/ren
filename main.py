@@ -1,46 +1,83 @@
-import json
-import requests
-
-model = "tinydolphin"  # TODO: update this for whatever model you wish to use
-
-
-def chat(messages):
-    r = requests.post(
-        "http://127.0.0.1:11434/api/chat/",
-        json={"model": model, "messages": messages, "stream": True},
-    )
-    r.raise_for_status()
-    output = ""
-
-    for line in r.iter_lines():
-        body = json.loads(line)
-        if "error" in body:
-            raise Exception(body["error"])
-        if body.get("done") is False:
-            message = body.get("message", "")
-            content = message.get("content", "")
-            output += content
-            # the response streams one token at a time, print that as we receive it
-            print(content, end="", flush=True)
-
-        if body.get("done", False):
-            message["content"] = output
-            return message
+import ollama
+import speech_recognition as sr
+import pyttsx3
+import datetime
+import threading
+# import os 
+# from gtts import gTTS 
 
 
-def main():
-    messages = []
+messages = []
+# Initialize the recognizer
+r = sr.Recognizer()
+ollama.pull("tinydolphin")
+text=""
+# text to speech
+engine = pyttsx3.init()
+# language = 'en'
 
+engine.setProperty('rate', 200)
+def record_text():
+    # Loop in case of errors
     while True:
-        user_input = input("Enter a prompt: ")
-        if not user_input:
-            exit()
-        print()
-        messages.append({"role": "user", "content": user_input})
-        message = chat(messages)
-        messages.append(message)
-        print("\n\n")
+        try:
+            # use the microphone as source for input
+            with sr.Microphone() as source2:
+                # listens for the user's input
+                print("Listening...")
+                audio2 = r.listen(source2)
 
+                # Using google to recognize audio
+                MyText = r.recognize_google(audio2)
+                print("I think I heard you say, '" + MyText + "'")
+                return MyText
 
-if __name__ == "__main__":
-    main()
+        except sr.UnknownValueError as e:
+            
+            return ""
+        except sr.RequestError as e:
+            
+            return ""
+        
+def send(chat):
+    
+    messages.append({
+      'role': 'user',
+      'content': chat,
+    })
+    
+    stream = ollama.chat(model='tinydolphin', 
+                         messages=messages,
+                         stream=True,
+    )
+
+    full_response = ""
+    response = ""
+
+  
+    for chunk in stream:
+        part = chunk['message']['content']
+        print(part, end='', flush=True)
+         
+        response = response + part
+        full_response = full_response + part
+
+        if (part == ".") or (part == "!") or (part == "?") or (part == ",") or (part == ";") or (part == ":") or (part == "\n"):
+            engine.say(response)
+            engine.runAndWait()
+            response = ""
+    
+    messages.append({
+      'role': 'assistant',
+      'content': response,
+    })
+
+    print("")
+
+while True:
+    chat = record_text()
+
+    if chat == "/exit":
+        break
+    elif len(chat) > 0:
+        send(chat)
