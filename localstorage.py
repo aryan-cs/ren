@@ -4,6 +4,8 @@ def get_history():
         with open("history.txt", 'r') as file:
             lines = file.readlines()
             for i in range(0, len(lines), 2):
+                if(lines[i] == '\n' or lines[i] == ''):
+                    continue
                 line1 = lines[i].strip()
                 if i + 1 < len(lines):
                     line2 = lines[i + 1].strip()

@@ -1,24 +1,48 @@
 user
 hello
 assistant
-Hey there! How's it going? Is everything okay?
+Hi there! How are you doing today? Is everything okay? *would you like to talk about anything on your mind? I'm here to listen and help in any way I can*
 user
-yes, everythings okay
+hi there
 assistant
-Awesome! I'm glad to hear that. Is there anything on your mind that you want to talk about or ask? I'm here to listen and help in any way I can.
+Great! It's always helpful to talk about what's on your mind. Can you tell me a little bit about what's going on? *I'm here to listen and offer support*
 user
-my favorite food is eggs
+I'm feeling very sad
 assistant
-Oh cool! Eggs are a great food. Do you have a favorite way of preparing them? Like scrambled, fried, or boiled? Or do you have a special recipe you like to make? Let me know if you need any help with cooking ideas or techniques!
+Sorry to hear that. It can be really tough when we're feeling down, but it's important to remember that you're not alone and there are people who care about you and want to help. *Have you considered reaching out to a trusted friend or family member, or seeking professional help from a therapist or counselor? They can provide you with the support and guidance you need*
 user
-i like eggs benedict.
+hello
 assistant
-Oh, wow! Eggs Benedict is a classic dish.
+Hey there! *I'm here to listen and help in any way I can. Is everything okay? Would you like to talk about something on your mind?*
 user
-whens the best time to eat it?
+I am not feeling well
 assistant
-Ah, great question! The best time to enjoy Eggs Benedict is really up to personal preference. Some people like to have it for breakfast, while others prefer it as a brunch dish. It can also be a nice dinner option if you want something light and satisfying. Really, the only important thing is that you enjoy it whenever works best for you! Is there anything else I can help with?
+Sorry to hear that you're not feeling well. It can be really tough when we're not feeling our best, but it's important to take care of ourselves and seek help if we need it. *Have you considered talking to a doctor or therapist about how you're feeling? They can provide you with the support and guidance you need*
 user
-what is my favorite dish?
+hello
 assistant
-Oh, wow! My favorite dish is eggs Benedict. It's a classic dish that never goes out of style. The combination of the runny egg yolks, crispy bacon or ham, and toasted English muffin is just perfect. I know it might seem like a simple dish, but there's something so satisfying about it. What's your favorite dish? Let me know if you need any help with cooking ideas or techniques!
+Hey there! *I'm here to listen and help in any way I can. Is everything okay? Would you like to talk about something on your mind?*
+
+user
+what
+user
+hello
+assistant
+Hey there! *Is everything okay? Would you like to talk about something on your mind? I'm here to listen and help in any way I can*
+user
+hello
+assistant
+Sorry to hear that you're feeling sad. It can be really tough when we're feeling down, but it's important to remember that you're not alone and there are people who care about you and want to help. *Have you considered reaching out to a trusted friend or family member, or seeking professional help from a therapist or counselor? They can provide you with the support and guidance you need*
+
+user
+hello NOTE: THE USER IS CURRENTLY FEELING ['fear']
+assistant
+Oh no, sorry to hear that you're feeling fearful. It can be really scary and overwhelming when we're feeling anxious or fearful, but it's important to remember that you're not alone and there are people who care about you and want to help. *Have you considered talking to a therapist or counselor about how you're feeling? They can provide you with the support and guidance you need*
+user
+no NOTE: THE USER IS CURRENTLY FEELING ['happy']
+assistant
+Awesome! It's great to hear that you're feeling happy. It can be really nice to have positive emotions and experiences, and it's important to cherish and appreciate them. *Do you have any fun plans or activities coming up? I'm here to listen and help in any way I can*
+user
+I'm I'm feeling very sad NOTE: THE USER IS CURRENTLY FEELING ['happy']
+assistant
+Sorry to hear that you're feeling sad. It can be really tough when we're feeling down, but it's important to remember that you're not alone and there are people who care about you and want to help. *Have you considered reaching out to a trusted friend or family member, or seeking professional help from a therapist or counselor? They can provide you with the support and guidance you need*
