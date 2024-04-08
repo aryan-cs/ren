@@ -1,12 +1,9 @@
 import ollama as llm
 import speech_recognition as sr
 import pyttsx3 as engine
-# from emotion import get_current_emotion
 from localstorage import get_history, add_history
-# from ui import render
 from emotion import detect_emotion
 model = "ren"
-# display_text = {"value": ""}
 
 r = sr.Recognizer()
 messages = get_history()
@@ -15,7 +12,7 @@ voice = engine.init()
 voice.setProperty('rate', 225)
 voices = voice.getProperty('voices')
 
-voice.setProperty('voice', voices[1].id) #changing index changes voices but ony 0 and 1 are working here
+voice.setProperty('voice', voices[1].id)
 voice.runAndWait()
 emotions = []
 
@@ -60,7 +57,6 @@ def respond(chat):
         full_response += part
 
         if (part == ".") or (part == "!") or (part == "?") or (part == ",") or (part == ";") or (part == ":") or (part == "\n"):
-            # display_text['value'] = response
             voice.say(response)
             voice.runAndWait()
             response = ""
